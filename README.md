@@ -5,33 +5,33 @@
 | Column             | Type   | Options                   |
 | ------------------ | ------ | ------------------------- |
 | nickname           | string | null: false               |
-| email              | string | null: false               | 
+| email              | string | null: false, unique: true | 
 | encrypted_password | string | null: false               |
 | name               | string | null: false               |
 | name_reading       | string | null: false               |
-| birthday           | text   | null: false               |
+| birthday           | string | null: false               |
 
 
 
 ## items テーブル
 
-| Column            | Type       | Options      |
-| ------            | ------     | ------------ | 
-| user              |            | null: false
-| category          | string     | null: false  |
-| product_condition | text       | null: false  |
-| shipping_cost     | text       | null: false  |
-| prefecture        | integer    | null: false  |
-| delivery_date     |            | null: false  |
+| Column            | Type       | Options                  |
+| ------            | ------     | ------------             | 
+| user              | references | null: false, foreign_key |
+| category          | string     | null: false              |
+| product_condition | string     | null: false              |
+| shipping_cost     | string     | null: false              |
+| prefecture        | integer    | null: false              |
+| delivery_date     | string     | null: false              |
 
 
 ## buy テーブル
 
 | Column             | Type       | Options      |
 | ------             | ---------- | ------------ |
-| credit_card_number | text       | null: false  |
-| effective_date     | references | null: false  |
-| security_code      | references | null: false  |
+| credit_card_number | string     | null: false  |
+| effective_date     | string     | null: false  |
+| security_code      | string     | null: false  |
 
 ## send テーブル
 
