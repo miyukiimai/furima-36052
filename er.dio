@@ -73,7 +73,7 @@
                 <mxCell id="75" value="has_one_sends" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
                     <mxGeometry x="110" y="555" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="76" value="belings_to_buy" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="76" value="belongs_to_buys" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
                     <mxGeometry x="620" y="540" width="120" height="60" as="geometry"/>
                 </mxCell>
             </root>
