@@ -32,7 +32,7 @@ has_many :buys
 | delivery_date_id     | integer    | null: false                    |
 | price                | string     | null: false                    |
 | user                 | references | null: false, foreign_key: true |
-| buy                  | references | null: false, foreign_key: true |
+| buy                  | references | null: false                    |
 
 ### Association
 belongs_to :user
@@ -48,6 +48,7 @@ has_one :buy
 
 ### Association
 belongs_to :user
+belongs_to :item
 has_one :address
 
 
