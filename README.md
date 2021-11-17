@@ -32,7 +32,6 @@ has_many :buys
 | delivery_date_id     | integer    | null: false                    |
 | price                | string     | null: false                    |
 | user                 | references | null: false, foreign_key: true |
-| buy                  | references | null: false                    |
 
 ### Association
 belongs_to :user
