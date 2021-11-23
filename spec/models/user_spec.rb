@@ -13,7 +13,6 @@ RSpec.describe User, type: :model do
 
     describe 'ユーザー新規登録' do
       context '新規登録できないとき' do
-      end
 
       it 'nicknameが空だと登録できない' do
         @user.nickname = ''
@@ -55,7 +54,7 @@ RSpec.describe User, type: :model do
       it '全角英字でパスワードでは登録できない' do
         @user.password = 'AAA'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Password には全角英字では設定できません')
+        expect(@user.errors.full_messages).to include('Password には半角の英字と数字の両方を含めて設定してください')
       end
 
       it 'birthdayが空だと登録できない' do
@@ -118,4 +117,5 @@ RSpec.describe User, type: :model do
       end
     end
   end
+end
 end
