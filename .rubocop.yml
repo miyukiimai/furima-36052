@@ -79,3 +79,31 @@ Style/FrozenStringLiteralComment:
 # メソッドパラメータ名の最小文字数を設定
 Naming/MethodParameterName:
  MinNameLength: 1
+
+# 空メソッドの場合に、1行のスタイルにしない　NG例：def style1; end
+Style/EmptyMethod:
+ EnforcedStyle: expanded
+
+# クラス内にクラスが定義されていないかチェック（無効）
+Style/ClassAndModuleChildren:
+ Enabled: false
+
+# 日本語でのコメントを許可
+Style/AsciiComments:
+ Enabled: false
+
+# クラスやモジュール定義前に、それらの説明書きがあるかをチェック（無効）
+Style/Documentation:
+ Enabled: false
+
+# ％i（）構文を使用していないシンボルで構成される配列リテラルをチェック（無効）
+Style/SymbolArray:
+ Enabled: false
+
+# 文字列に値が代入されて変わっていないかチェック（無効）
+Style/FrozenStringLiteralComment:
+ Enabled: false
+
+# メソッドパラメータ名の最小文字数を設定
+Naming/MethodParameterName:
+ MinNameLength: 1
