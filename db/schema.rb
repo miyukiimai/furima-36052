@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2021_11_24_090518) do
     t.integer "delivery_date_id", null: false
     t.string "price", null: false
     t.bigint "user_id", null: false
+    t.integer "genre_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_items_on_user_id"
