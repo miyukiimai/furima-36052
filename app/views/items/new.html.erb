@@ -54,7 +54,7 @@
           商品の状態
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:product_condition_id, Product_condition.all, :id, :name, {}, {class:"select-box", id:"product_condition"}) %>
+        <%= f.collection_select(:product_condition_id, ProductCondition.all, :id, :name, {}, {class:"select-box", id:"product_condition"}) %>
       </div>
     </div>
     <%# /商品の詳細 %>
@@ -70,7 +70,7 @@
           配送料の負担
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class:"select-box", id:"item-shipping-fee-status"}) %>
+        <%= f.collection_select(:prefecture_id, ShippingCost.all, :id, :name, {}, {class:"select-box", id:"item-shipping-fee-status"}) %>
         <div class="weight-bold-text">
           発送元の地域
           <span class="indispensable">必須</span>
@@ -80,7 +80,7 @@
           発送までの日数
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:delivery_date_id, [], :hoge, :hoge, {}, {class:"select-box", id:"item-scheduled-delivery"}) %>
+        <%= f.collection_select(:delivery_date_id, DeliveryDate.all, :id, :name, {}, {class:"select-box", id:"item-scheduled-delivery"}) %>
       </div>
     </div>
     <%# /配送について %>

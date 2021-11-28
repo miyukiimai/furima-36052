@@ -6,7 +6,6 @@ Rails.application.routes.draw do
  resources :items do
    resources :users, only: [:new, :create, :show]
 
- root to: 'articles#index'
- resources :articles
  end
 end
+
