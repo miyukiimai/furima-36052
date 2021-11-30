@@ -14,5 +14,18 @@ extend ActiveHash::Associations::ActiveRecordExtensions
   validates :title, :text, presence: true
 
   #ジャンルの選択が「--」の時は保存できないようにする
-  validates :genre_id, numericality: { other_than: 1 }
+  validates :category_id, numericality: { other_than: 1 }
+  validates :product_condition_id, numericality: { other_than: 1 }
+  validates :shipping_cost_id, numericality: { other_than: 1 }
+  validates :prefecture_id, numericality: { other_than: 1 }
+  validates :delivery_id, numericality: { other_than: 1 }
+  validates :categoty_id, presence: true
+  validates :product_condition_id, presence: true
+  validates :shipping_cost_id, presence: true
+  validates :prefecture_id, presence: true
+  validates :image, presence: true
+  validates :item_name, presence: true
+  validates :item_description, presence: true
+  validates :price, presence: true
+  validates :delivery_date_id, presence: true
 end
