@@ -35,7 +35,7 @@ RSpec.describe Item, type: :model do
           @item.valid?
           expect(@item.errors.full_messages).to include("Category can't be blank")
         end
-        it 'item_condition_idの情報が空だと出品できない' do
+        it 'item_condition_idが空だと出品できない' do
           @item.product_condition_id = ''
           @item.valid?
           expect(@item.errors.full_messages).to include("Product condition can't be blank")
@@ -50,7 +50,7 @@ RSpec.describe Item, type: :model do
           @item.valid?
           expect(@item.errors.full_messages).to include("Prefecture can't be blank")
         end
-        it 'delivery_date_idの情報が空だと出品できない' do
+        it 'delivery_date_idが空だと出品できない' do
           @item.delivery_date_id = ''
           @item.valid?
           expect(@item.errors.full_messages).to include("Delivery date can't be blank")
@@ -85,7 +85,34 @@ RSpec.describe Item, type: :model do
           @item.valid?
           expect(@item.errors.full_messages).to include('Price Half-width number')
         end
+
+
+          it 'category_idが1だと出品できない' do
+            @item.category_id = 1
+            @item.valid?
+            expect(@item.errors.full_messages).to include("Category can't be blank")
+          end
+          it 'item_condition_idが1だと出品できない' do
+            @item.product_condition_id = 1
+            @item.valid?
+            expect(@item.errors.full_messages).to include("Product condition can't be blank")
+          end
+          it 'shipping_cost_idが1だと出品できない' do
+            @item.shipping_cost_id = 1
+            @item.valid?
+            expect(@item.errors.full_messages).to include("Shipping cost can't be blank")
+          end
+          it 'prefecture_idが1だと出品できない' do
+            @item.prefecture_id = 1
+            @item.valid?
+            expect(@item.errors.full_messages).to include("Prefecture can't be blank")
+          end
+          it 'delivery_date_idが1だと出品できない' do
+            @item.delivery_date_id = 1
+            @item.valid?
+            expect(@item.errors.full_messages).to include("Delivery date can't be blank")
+          end
+        end
       end
     end
   end
-end
