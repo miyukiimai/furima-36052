@@ -23,17 +23,21 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  #def edit
-  #end
+  def edit
+    @item = Item.find(params[:id])
+    unless  user_signed_in?
+      redirect_to action: :index
+   end
+  end
 
-  #def update
-   # if @item.save
-    #  redirect_to item_path
-    #else
-     # render :edit
-    #redirect_to action: :index
-    #end
-   #end
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+    redirect_to item_path
+   else
+    render :edit
+    end
+   end
 
 
   #def destroy
