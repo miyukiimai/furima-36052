@@ -7,13 +7,19 @@ end
     
   describe '商品購入機能' do
     context '商品が購入できるとき' do
-      it 'postal_code,prefecture_id,city,house_number,phone_numberが存在すれば購入できる' do
+      it 'postal_code,prefecture_id,city,house_number,phone_number,tokenが存在すれば購入できる' do
         expect(@form).to be_valid
       end
     end
 
   describe '商品購入機能' do
     context '商品が購入できないとき' do
+
+      it "tokenが空では登録できないこと" do
+        @form.token = nil
+        @form.valid?
+        expect(@form.errors.full_messages).to include("Token can't be blank")
+      end
       it 'postal_codeが空だと購入できない' do
         @form.postal_code = ''
         @form.valid?

@@ -3,27 +3,39 @@ class BuysController < ApplicationController
   def index
     @form = Form.new
     @item = Item.find(params[:item_id])
+    @buy = Buy.new
   end
 
   def create
-    @buy = Buy.create(buy_params)
-    Address.create(address_params)
-    redirect_to root_path
-  end
+    @item = Item.find(params[:item_id])
+    #@buy = Buy.new
+    #binding.pry
 
-  def item_params
-    params.require(:item).permit(:item_name, :item_description, :category_id, :product_condition_id, :shipping_cost_id,
-                                 :prefecture_id, :delivery_date_id, :price, :image).merge(user_id: current_user.id)
+
+
+    @form = Form.new(form_params)
+    if @form.valid?
+     pay_item
+     @form.save
+      return redirect_to root_path
+    else
+      render 'index'
+    end
   end
- 
 
   private
 
-  def address_params
-    params.require(:form).permit(:postal_code, :prefecture_id, :city, :house_number, :building_number, :phone_number, :buy_id)
+  def form_params
+    params.require(:form).permit(:postal_code, :prefecture_id, :city, :house_number, :building_number, :phone_number, :buy).
+    merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+  end 
+
+  def pay_item
+      Payjp.api_key = "sk_test_6191eea55940b05d63867e09"  # 自身のPAY.JPテスト秘密鍵を記述しましょう
+      Payjp::Charge.create(
+        amount: @item.price,
+        card: form_params[:token],    # カードトークン
+        currency: 'jpy'                 # 通貨の種類（日本円）
+      )
   end
-
-  #def address_params
-   # params.permit(:postal_code, :prefecture_id, :city, :house_number, :building_number, :phone_number, :buy_id).merge(buy_id: @buy.id)
-
 end
