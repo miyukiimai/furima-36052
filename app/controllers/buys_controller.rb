@@ -6,7 +6,10 @@ class BuysController < ApplicationController
     @form = Form.new
     @item = Item.find(params[:item_id])
     @buy = Buy.new
+    if current_user == @item.user
+    redirect_to root_path
   end
+end
 
   def create
     @item = Item.find(params[:item_id])
@@ -50,9 +53,3 @@ class BuysController < ApplicationController
   end
   
 end
-
-
-
-
-
-
