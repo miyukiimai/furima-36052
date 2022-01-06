@@ -1,6 +1,8 @@
 class BuysController < ApplicationController
-  before_action :move_to_index, except: [:index]
-  before_action :own_url, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, only:[:index, :create]
+  before_action :move_to_index, except: [:index, :show]
+  before_action :own_url, only:[:index, :create]
+  #before_action :move_to_signed_in, except: [:index]
   
   def index
     @form = Form.new
@@ -9,6 +11,15 @@ class BuysController < ApplicationController
     if current_user == @item.user
     redirect_to root_path
   end
+end
+
+def show
+end
+
+
+def edit
+  @buy = Buy.find(params[:id])
+ redirect_to root_path unless current_user.id == @buy.user_id
 end
 
   def create
@@ -45,11 +56,20 @@ end
   end
 
   def move_to_index
+    unless user_signed_in?
+      redirect_to action: :index
+    end
+  end
+
+    def own_url
+      if @item_user = current_user || @item_buy != nil
+        redirect_to root_path
+      end
+  end
+    
 
     #item = Item.find(params[:id])
     #unless current_user.id == item.user_id
       #redirect_to root_path
     
   end
-  
-end
