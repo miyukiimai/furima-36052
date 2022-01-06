@@ -2,7 +2,6 @@ class BuysController < ApplicationController
   before_action :authenticate_user!, only:[:index, :create]
   before_action :move_to_index, except: [:index, :show]
   before_action :own_url, only:[:index, :create]
-  #before_action :move_to_signed_in, except: [:index]
   
   def index
     @form = Form.new
@@ -24,8 +23,6 @@ end
 
   def create
     @item = Item.find(params[:item_id])
-    #@buy = Buy.new
-    #binding.pry
 
 
 
@@ -50,8 +47,8 @@ end
       Payjp.api_key = "sk_test_6191eea55940b05d63867e09"  # 自身のPAY.JPテスト秘密鍵を記述しましょう
       Payjp::Charge.create(
         amount: @item.price,
-        card: form_params[:token],    # カードトークン
-        currency: 'jpy'                 # 通貨の種類（日本円）
+        card: form_params[:token],  
+        currency: 'jpy'          
       )
   end
 
@@ -66,10 +63,5 @@ end
         redirect_to root_path
       end
   end
-    
-
-    #item = Item.find(params[:id])
-    #unless current_user.id == item.user_id
-      #redirect_to root_path
     
   end
