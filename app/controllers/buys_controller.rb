@@ -13,7 +13,6 @@ class BuysController < ApplicationController
 
 
   def create
-    @item = Item.find(params[:item_id])
     @form = Form.new(form_params)
     if @form.valid?
       pay_item
@@ -27,12 +26,12 @@ class BuysController < ApplicationController
   private
 
   def form_params
-    params.require(:form).permit(:postal_code, :prefecture_id, :city, :house_number, :building_number, :phone_number, :buy)
+    params.require(:form).permit(:postal_code, :prefecture_id, :city, :house_number, :building_number, :phone_number)
           .merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
   def pay_item
-    Payjp.api_key = 'sk_test_6191eea55940b05d63867e09'  # 自身のPAY.JPテスト秘密鍵を記述しましょう
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # 自身のPAY.JPテスト秘密鍵を記述しましょう
     Payjp::Charge.create(
       amount: @item.price,
       card: form_params[:token],

@@ -10,6 +10,11 @@ RSpec.describe Form, type: :model do
       it 'postal_code,prefecture_id,city,house_number,phone_number,tokenが存在すれば購入できる' do
         expect(@form).to be_valid
       end
+
+      it 'building_numberが存在しなくても購入できる' do
+        expect(@form).to be_valid
+      end
+
     end
 
     describe '商品購入機能' do

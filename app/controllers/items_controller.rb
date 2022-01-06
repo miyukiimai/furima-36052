@@ -49,4 +49,10 @@ class ItemsController < ApplicationController
   def set_tweet
     @item = Item.find(params[:id])
   end
+
+  def own_url
+    if current_user == @item.user || @item.buy.present?
+      redirect_to root_path
+    end
+  end
 end
