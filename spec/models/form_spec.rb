@@ -32,12 +32,12 @@ RSpec.describe Form, type: :model do
         it 'postal_codeは半角数字のみ保存可能なこと' do
           @form.postal_code = '１２３４５６７'
           @form.valid?
-          expect(@form.errors.full_messages).to include('Postal code Half-width number')
+          expect(@form.errors.full_messages).to include('Postal code Input correctly')
         end
         it 'postal_codeはハイフンを含まないと購入できない' do
           @form.postal_code = '1234567'
           @form.valid?
-          expect(@form.errors.full_messages).to include('Postal code invalid. Include hyphen(-)')
+          expect(@form.errors.full_messages).to include('Postal code Input correctly')
         end
         it 'prefecture_idが空だと購入できない' do
           @form.prefecture_id = ''
@@ -62,22 +62,22 @@ RSpec.describe Form, type: :model do
         it 'phone_numberはハイフンがあると購入できない' do
           @form.phone_number = '090-1234-5678'
           @form.valid?
-          expect(@form.errors.full_messages).to include('Phone number Input only number')
+          expect(@form.errors.full_messages).to include('Phone number Input correctly')
         end
         it 'phone_numberは半角数値のみ保存可能なこと' do
           @form.phone_number = '０９０１２３４５６７８'
           @form.valid?
-          expect(@form.errors.full_messages).to include('Phone number Half-width number')
+          expect(@form.errors.full_messages).to include('Phone number Input correctly')
         end
         it 'phone_numberは10桁以上で保存可能なこと' do
           @form.phone_number = '12345678'
           @form.valid?
-          expect(@form.errors.full_messages).to include('Phone number too short minimum is 10 numbers')
+          expect(@form.errors.full_messages).to include('Phone number Input correctly')
         end
         it 'phone_numberは11桁以内で保存可能なこと' do
           @form.phone_number = '090123456789'
           @form.valid?
-          expect(@form.errors.full_messages).to include('Phone number too long maximum is 11 numbers')
+          expect(@form.errors.full_messages).to include('Phone number Input correctly')
         end
       end
     end
