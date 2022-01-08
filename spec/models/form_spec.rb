@@ -43,7 +43,7 @@ RSpec.describe Form, type: :model do
           expect(@form.errors.full_messages).to include("Postal code Input correctly")
         end
         it 'prefecture_idが空だと購入できない' do
-          @form.prefecture_id = 'nil' '---'
+          @form.prefecture_id = 1
           @form.valid?
           expect(@form.errors.full_messages).to include("Prefecture can't be blank")
         end

@@ -5,7 +5,6 @@ class BuysController < ApplicationController
 
   def index
     @form = Form.new
-    @item = Item.find(params[:item_id])
   end
 
   

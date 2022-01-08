@@ -6,7 +6,6 @@ class Form
   attr_accessor :token
 
   with_options presence: true do
-    validates :postal_code
     validates :prefecture_id
     validates :city
     validates :house_number
