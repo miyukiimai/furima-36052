@@ -2,11 +2,12 @@ require 'rails_helper'
 
 RSpec.describe Form, type: :model do
   before do
-
-    #@form = FactoryBot.build(:form)
     @user = FactoryBot.create(:user)
     @item = FactoryBot.create(:item)
-   @form = FactoryBot.build(:form, user_id: user.id, item_id: item.id, buy_id: buy.id)
+    @form = FactoryBot.build(:form, user_id: @user.id, item_id: @item.id)
+    #@form = FactoryBot.build(:form)
+
+    sleep 0.5
   end
 
   describe '商品購入機能' do
@@ -15,8 +16,8 @@ RSpec.describe Form, type: :model do
         expect(@form).to be_valid
       end
       it 'building_numberが存在しなくても購入できる' do
+        @form.building_number = ''
         expect(@form).to be_valid
-        @form.building_number = nil
       end
     end
 
@@ -88,7 +89,7 @@ RSpec.describe Form, type: :model do
           expect(@form.errors.full_messages).to include("User can't be blank")
         end
         it 'item_idが空だと購入できない' do
-          @form.user_id = ''
+          @form.item_id = ''
           @form.valid?
           expect(@form.errors.full_messages).to include("Item can't be blank")
         end

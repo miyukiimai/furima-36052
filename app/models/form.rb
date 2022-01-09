@@ -6,7 +6,6 @@ class Form
   attr_accessor :token
 
   with_options presence: true do
-    validates :prefecture_id
     validates :city
     validates :house_number
     validates :phone_number
@@ -17,12 +16,19 @@ class Form
     
   end
 
-  validates :prefecture_id, numericality: {other_than: 0, message: "can't be blank"}
+  
+
   validates :phone_number, numericality: { only_integer: true, message: "Input correctly"}
  
   VALID_PHONE_REGEX = /\A\d{10}$|^\d{11}\z/
   validates :phone_number, format: { with: VALID_PHONE_REGEX, message: "Input correctly"}
 
+
+  with_options numericality: { other_than: 1, message: "can't be blank" } do
+    validates :prefecture_id
+  end
+
+  
   def save
     buy = Buy.create(user_id: user_id, item_id: item_id)
     # 住所を保存する
