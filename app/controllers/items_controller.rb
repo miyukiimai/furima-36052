@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit ]
-  before_action :move_to_index, except: [:index, :show, :destroy ]
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_tweet, only: [:edit, :show, :update, :destroy]
+  before_action :own_url, only: [:edit]
 
   def index
     @items = Item.order('created_at DESC')
@@ -56,6 +56,11 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def own_url
+    if current_user == @item.user && @item.buy.present?
+      redirect_to root_path
+    end
+  end
 
   def move_to_index
     unless user_signed_in?
