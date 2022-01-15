@@ -17,7 +17,7 @@ class Form
 
   
 
-  validates :phone_number, numericality: { only_integer: true, message: "Input correctly"}
+  validates :phone_number, numericality: { only_integer: true }
  
   VALID_PHONE_REGEX = /\A\d{10}$|^\d{11}\z/
   validates :phone_number, format: { with: VALID_PHONE_REGEX, message: "Input correctly"}
